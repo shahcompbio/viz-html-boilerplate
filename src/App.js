@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = ({ text }) => {
+  return text;
+};
 
-export default App;
+// Put specific arguments here for development
+const Dev = () => {
+  return <App text={"Gonna run in Dev mode"} />;
+};
+
+const Prod = () => {
+  return <App {...window.appArgs} />;
+};
+
+export default process.env.NODE_ENV === "development" ? Dev : Prod;
